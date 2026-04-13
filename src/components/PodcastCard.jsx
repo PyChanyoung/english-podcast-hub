@@ -8,7 +8,7 @@ const LEVEL_STYLES = {
 const LEVEL_LABEL = { beginner: '초급', intermediate: '중급', advanced: '고급' };
 
 export default function PodcastCard({ podcast, onPlay }) {
-  const { level, emoji, title, desc, channelId, links } = podcast;
+  const { level, emoji, title, desc, channelId, hasPodcastTab, links } = podcast;
   const styles = LEVEL_STYLES[level];
 
   return (
@@ -43,7 +43,7 @@ export default function PodcastCard({ podcast, onPlay }) {
       </div>
 
       {channelId && (
-        <EpisodeDropdown channelId={channelId} onPlay={onPlay} />
+        <EpisodeDropdown channelId={channelId} hasPodcastTab={hasPodcastTab} onPlay={onPlay} />
       )}
     </div>
   );

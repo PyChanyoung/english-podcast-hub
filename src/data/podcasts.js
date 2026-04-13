@@ -6,6 +6,7 @@ export const podcasts = [
     title: 'VOA Learning English',
     desc: '미국의 소리(VOA) 방송에서 제공하는 팟캐스트. 느리고 명확한 발음으로 세계 뉴스를 전달합니다.',
     channelId: 'UCKyTokYo0nK2OA-az-sDijA',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@VOALearningEnglish' }],
   },
   {
@@ -14,6 +15,7 @@ export const podcasts = [
     title: 'Speak English with Tiffani',
     desc: '문법·어휘·실생활 회화를 단계별로 친절하게 설명해줍니다. 초보자에게 자신감을 심어주는 스타일입니다.',
     channelId: 'UCKSuUHboNHmqhMIet51QQug',
+    hasPodcastTab: false,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@SpeakEnglishWithTiffani' }],
   },
   {
@@ -22,6 +24,7 @@ export const podcasts = [
     title: 'ESLPod',
     desc: 'Dr. Jeff McQuillan이 진행하는 팟캐스트. 천천히 읽어주는 대화와 함께 어휘·문화를 상세히 설명합니다.',
     channelId: 'UCuOZb34VYjJMcVve_8mBS-A',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@ESLPod' }],
   },
   {
@@ -30,6 +33,7 @@ export const podcasts = [
     title: 'EnglishClass101',
     desc: '체계적인 커리큘럼으로 알파벳부터 고급 표현까지 단계별로 배울 수 있는 대형 영어 학습 채널입니다.',
     channelId: 'UC1XbXsp48-VkYbNBJQ1YvOQ',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishClass101' }],
   },
 
@@ -40,6 +44,7 @@ export const podcasts = [
     title: 'BBC 6 Minute English',
     desc: 'BBC에서 제공하는 6분짜리 짧은 에피소드. 다양한 주제의 어휘와 토론이 포함되어 있습니다.',
     channelId: 'UCHaHD477h-FeBbVh9Sh7syA',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@bbclearningenglish' }],
   },
   {
@@ -48,6 +53,7 @@ export const podcasts = [
     title: 'Thinking in English',
     desc: '정치, 경제, 철학, 과학 등 흥미로운 주제를 영어로 깊이 있게 탐구합니다. 중~고급 전환에 적합.',
     channelId: 'UCnWxuf5Rt9OcSt4AiviCe1A',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@thinkinginenglishpodcast' }],
   },
   {
@@ -56,6 +62,7 @@ export const podcasts = [
     title: 'English with Lucy',
     desc: '영국인 Lucy가 진행하는 채널. 자연스러운 영국식 표현·발음·어휘를 대화 형식으로 익힐 수 있습니다.',
     channelId: 'UCF6eEVtJokEFdaTDL5BKT4w',
+    hasPodcastTab: false,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishwithLucy' }],
   },
   {
@@ -64,6 +71,7 @@ export const podcasts = [
     title: 'engVid',
     desc: '원어민 강사 여러 명이 문법·어휘·발음을 강의 형식으로 알려줍니다. 특정 문법 포인트 집중 학습에 적합.',
     channelId: 'UClvwNCja3aXxqiFrsKC1DPQ',
+    hasPodcastTab: false,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@engvid' }],
   },
 
@@ -74,6 +82,7 @@ export const podcasts = [
     title: "Luke's English Podcast",
     desc: '영국인 영어 선생님 Luke가 진행하는 장편 팟캐스트. 영국식 유머와 심층 토픽으로 고급 표현을 익힐 수 있습니다.',
     channelId: 'UC2L7vR43LKuBXXV2AentEMw',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@LukesEnglishPodcast' }],
   },
   {
@@ -82,6 +91,7 @@ export const podcasts = [
     title: "Rachel's English",
     desc: '미국식 발음과 자연스러운 연결 발음(연음)에 특화된 채널. 원어민처럼 들리고 싶은 학습자에게 최적입니다.',
     channelId: 'UCvn_XCl_mgQmt3sD753zdJA',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@RachelsEnglish' }],
   },
   {
@@ -90,6 +100,7 @@ export const podcasts = [
     title: 'English Learning for Curious Minds',
     desc: '역사·과학·문화 등 흥미로운 주제로 고급 영어를 자연스럽게 흡수합니다. 자막과 스크립트 제공.',
     channelId: 'UCa2aEN90vKFPyWcHsSMFKCA',
+    hasPodcastTab: true,
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishLearningForCuriousMinds' }],
   },
 ];
