@@ -16,6 +16,22 @@ export const podcasts = [
     channelId: 'UCKSuUHboNHmqhMIet51QQug',
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@SpeakEnglishWithTiffani' }],
   },
+  {
+    level: 'beginner',
+    emoji: '🎓',
+    title: 'ESLPod',
+    desc: 'Dr. Jeff McQuillan이 진행하는 팟캐스트. 천천히 읽어주는 대화와 함께 어휘·문화를 상세히 설명합니다.',
+    channelId: 'UCuOZb34VYjJMcVve_8mBS-A',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@ESLPod' }],
+  },
+  {
+    level: 'beginner',
+    emoji: '📚',
+    title: 'EnglishClass101',
+    desc: '체계적인 커리큘럼으로 알파벳부터 고급 표현까지 단계별로 배울 수 있는 대형 영어 학습 채널입니다.',
+    channelId: 'UC1XbXsp48-VkYbNBJQ1YvOQ',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishClass101' }],
+  },
 
   // ── 중급 ────────────────────────────────────────────────
   {
@@ -34,6 +50,22 @@ export const podcasts = [
     channelId: 'UCnWxuf5Rt9OcSt4AiviCe1A',
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@thinkinginenglishpodcast' }],
   },
+  {
+    level: 'intermediate',
+    emoji: '🇬🇧',
+    title: 'English with Lucy',
+    desc: '영국인 Lucy가 진행하는 채널. 자연스러운 영국식 표현·발음·어휘를 대화 형식으로 익힐 수 있습니다.',
+    channelId: 'UCF6eEVtJokEFdaTDL5BKT4w',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishwithLucy' }],
+  },
+  {
+    level: 'intermediate',
+    emoji: '📝',
+    title: 'engVid',
+    desc: '원어민 강사 여러 명이 문법·어휘·발음을 강의 형식으로 알려줍니다. 특정 문법 포인트 집중 학습에 적합.',
+    channelId: 'UClvwNCja3aXxqiFrsKC1DPQ',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@engvid' }],
+  },
 
   // ── 고급 ────────────────────────────────────────────────
   {
@@ -43,5 +75,21 @@ export const podcasts = [
     desc: '영국인 영어 선생님 Luke가 진행하는 장편 팟캐스트. 영국식 유머와 심층 토픽으로 고급 표현을 익힐 수 있습니다.',
     channelId: 'UC2L7vR43LKuBXXV2AentEMw',
     links: [{ label: 'YouTube', url: 'https://www.youtube.com/@LukesEnglishPodcast' }],
+  },
+  {
+    level: 'advanced',
+    emoji: '🗣️',
+    title: "Rachel's English",
+    desc: '미국식 발음과 자연스러운 연결 발음(연음)에 특화된 채널. 원어민처럼 들리고 싶은 학습자에게 최적입니다.',
+    channelId: 'UCvn_XCl_mgQmt3sD753zdJA',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@RachelsEnglish' }],
+  },
+  {
+    level: 'advanced',
+    emoji: '🧩',
+    title: 'English Learning for Curious Minds',
+    desc: '역사·과학·문화 등 흥미로운 주제로 고급 영어를 자연스럽게 흡수합니다. 자막과 스크립트 제공.',
+    channelId: 'UCa2aEN90vKFPyWcHsSMFKCA',
+    links: [{ label: 'YouTube', url: 'https://www.youtube.com/@EnglishLearningForCuriousMinds' }],
   },
 ];
