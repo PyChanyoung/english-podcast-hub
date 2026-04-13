@@ -1,0 +1,5 @@
+# This directory is a Syncthing folder marker.
+# Do not delete.
+
+folderID: gzowd-ilzhv
+created: 2026-04-12T23:38:05-06:00
