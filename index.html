@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>English Podcast Hub</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e3248;
+      --accent: #6c63ff;
+      --accent-hover: #857dff;
+      --text: #e8eaf6;
+      --text-muted: #8b90b0;
+      --beginner: #34d399;
+      --intermediate: #60a5fa;
+      --advanced: #f472b6;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      padding: 2.5rem 2rem 1.5rem;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+    }
+    header h1 {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      color: var(--text);
+    }
+    header h1 span { color: var(--accent); }
+    header p {
+      margin-top: 0.5rem;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Filter tabs */
+    .filters {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 1.75rem 2rem;
+      flex-wrap: wrap;
+    }
+    .filter-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+    .filter-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .filter-btn.beginner.active  { background: var(--beginner);  border-color: var(--beginner);  }
+    .filter-btn.intermediate.active { background: var(--intermediate); border-color: var(--intermediate); }
+    .filter-btn.advanced.active  { background: var(--advanced);  border-color: var(--advanced);  }
+
+    /* Grid */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.25rem;
+      padding: 0 2rem 4rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Card */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+    }
+    .card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+    .card-emoji { font-size: 2rem; }
+    .level-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .level-badge.beginner     { background: #0d3d2a; color: var(--beginner); }
+    .level-badge.intermediate { background: #0d2240; color: var(--intermediate); }
+    .level-badge.advanced     { background: #3d0d28; color: var(--advanced); }
+
+    .card h2 { font-size: 1.05rem; font-weight: 600; }
+    .card p   { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; flex: 1; }
+
+    .card-links {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.25rem;
+    }
+    .link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      font-size: 0.82rem;
+      padding: 0.35rem 0.85rem;
+      border-radius: 8px;
+      text-decoration: none;
+      background: var(--surface2);
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      transition: all 0.2s;
+    }
+    .link-btn:hover { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* Hidden */
+    .card.hidden { display: none; }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      border-top: 1px solid var(--border);
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>English <span>Podcast</span> Hub</h1>
+  <p>영어 실력 향상을 위한 팟캐스트 모음</p>
+</header>
+
+<div class="filters">
+  <button class="filter-btn active" data-filter="all">전체</button>
+  <button class="filter-btn beginner" data-filter="beginner">초급</button>
+  <button class="filter-btn intermediate" data-filter="intermediate">중급</button>
+  <button class="filter-btn advanced" data-filter="advanced">고급</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<footer>
+  좋은 팟캐스트를 발견하면 직접 추가해보세요 &mdash; <code>podcasts</code> 배열에 항목을 추가하면 됩니다.
+</footer>
+
+<script>
+  const podcasts = [
+    // ── 초급 ──────────────────────────────────────────────
+    {
+      level: "beginner",
+      emoji: "🇬🇧",
+      title: "LearnEnglish Podcast",
+      desc: "British Council에서 만든 A1~B1 수준의 팟캐스트. 일상 대화 중심이며 스크립트와 연습 문제를 제공합니다.",
+      links: [
+        { label: "공식 사이트", url: "https://learnenglish.britishcouncil.org/general-english/audio-series/podcasts" }
+      ]
+    },
+    {
+      level: "beginner",
+      emoji: "📰",
+      title: "VOA Learning English",
+      desc: "미국의 소리(VOA) 방송에서 제공하는 팟캐스트. 느리고 명확한 발음으로 세계 뉴스를 전달합니다.",
+      links: [
+        { label: "Spotify", url: "https://open.spotify.com/show/4zEMKnoCELWNKJTMWKGMfU" },
+        { label: "공식 사이트", url: "https://learningenglish.voanews.com/" }
+      ]
+    },
+    {
+      level: "beginner",
+      emoji: "👩‍🏫",
+      title: "Speak English with Tiffani",
+      desc: "문법·어휘·실생활 회화를 단계별로 친절하게 설명해줍니다. 초보자에게 자신감을 심어주는 스타일입니다.",
+      links: [
+        { label: "Spotify", url: "https://open.spotify.com/show/0M2rSFHJkHSUqQ6iy5zUhU" },
+        { label: "Apple Podcasts", url: "https://podcasts.apple.com/us/podcast/speak-english-with-tiffani/id1071663878" }
+      ]
+    },
+    {
+      level: "beginner",
+      emoji: "📖",
+      title: "Easy Stories in English",
+      desc: "간단한 단어로 쓴 짧은 이야기를 들려주는 팟캐스트. 듣기 훈련에 최적화되어 있습니다.",
+      links: [
+        { label: "공식 사이트", url: "https://easystoriesinenglish.com/" },
+        { label: "Spotify", url: "https://open.spotify.com/show/3YCPresWCHGPrGZBvMrAzp" }
+      ]
+    },
+
+    // ── 중급 ──────────────────────────────────────────────
+    {
+      level: "intermediate",
+      emoji: "⏱️",
+      title: "BBC 6 Minute English",
+      desc: "BBC에서 제공하는 6분짜리 짧은 에피소드. 다양한 주제의 어휘와 토론이 포함되어 있습니다.",
+      links: [
+        { label: "공식 사이트", url: "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english" },
+        { label: "Spotify", url: "https://open.spotify.com/show/0MkNfXlKnMPEUMEeKQYmYC" }
+      ]
+    },
+    {
+      level: "intermediate",
+      emoji: "🌍",
+      title: "Thinking in English",
+      desc: "정치, 경제, 철학, 과학 등 흥미로운 주제를 영어로 깊이 있게 탐구합니다. 중~고급 전환에 적합.",
+      links: [
+        { label: "Spotify", url: "https://open.spotify.com/show/40xfDNplQGPqbcf6K2HVVU" },
+        { label: "Apple Podcasts", url: "https://podcasts.apple.com/gb/podcast/thinking-in-english/id1538490817" }
+      ]
+    },
+    {
+      level: "intermediate",
+      emoji: "🎙️",
+      title: "All Ears English",
+      desc: "미국인 호스트 두 명이 일상 영어, 관용구, 문화를 자연스럽게 대화하는 형식으로 알려줍니다.",
+      links: [
+        { label: "공식 사이트", url: "https://www.allearsenglish.com/" },
+        { label: "Spotify", url: "https://open.spotify.com/show/2O1eT4mGmFWxeqMW9MwIBd" }
+      ]
+    },
+
+    // ── 고급 ──────────────────────────────────────────────
+    {
+      level: "advanced",
+      emoji: "🎭",
+      title: "Luke's English Podcast",
+      desc: "영국인 영어 선생님 Luke가 진행하는 장편 팟캐스트. 영국식 유머와 심층 토픽으로 고급 표현을 익힐 수 있습니다.",
+      links: [
+        { label: "공식 사이트", url: "https://teacherluke.co.uk/" },
+        { label: "Spotify", url: "https://open.spotify.com/show/7DqXlmFRNMNbVJWwZSFbsG" }
+      ]
+    },
+    {
+      level: "advanced",
+      emoji: "🗞️",
+      title: "The Daily (NYT)",
+      desc: "뉴욕타임스의 대표 뉴스 팟캐스트. 실제 미국인이 쓰는 저널리즘 영어를 매일 20~30분으로 접할 수 있습니다.",
+      links: [
+        { label: "Spotify", url: "https://open.spotify.com/show/3IM0lmZxpFAY7CwMuv9H4g" },
+        { label: "Apple Podcasts", url: "https://podcasts.apple.com/us/podcast/the-daily/id1200361736" }
+      ]
+    },
+    {
+      level: "advanced",
+      emoji: "🧠",
+      title: "Hardcore History",
+      desc: "역사학자 Dan Carlin의 심층 역사 팟캐스트. 에피소드 하나가 수 시간에 달하는 고밀도 영어 청취 훈련입니다.",
+      links: [
+        { label: "공식 사이트", url: "https://www.dancarlin.com/hardcore-history-series/" },
+        { label: "Spotify", url: "https://open.spotify.com/show/72qJ7bSaEDYnOX09yE3PEU" }
+      ]
+    }
+  ];
+
+  const grid = document.getElementById('grid');
+
+  function renderCards(filter) {
+    grid.innerHTML = '';
+    podcasts
+      .filter(p => filter === 'all' || p.level === filter)
+      .forEach(p => {
+        const levelLabel = { beginner: '초급', intermediate: '중급', advanced: '고급' }[p.level];
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <div class="card-top">
+            <span class="card-emoji">${p.emoji}</span>
+            <span class="level-badge ${p.level}">${levelLabel}</span>
+          </div>
+          <h2>${p.title}</h2>
+          <p>${p.desc}</p>
+          <div class="card-links">
+            ${p.links.map(l => `<a class="link-btn" href="${l.url}" target="_blank" rel="noopener">↗ ${l.label}</a>`).join('')}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+  }
+
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderCards(btn.dataset.filter);
+    });
+  });
+
+  renderCards('all');
+</script>
+
+</body>
+</html>
