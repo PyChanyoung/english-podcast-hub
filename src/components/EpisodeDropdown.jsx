@@ -3,10 +3,10 @@ import { useEpisodes } from '../hooks/useEpisodes';
 
 export default function EpisodeDropdown({ channelId, onPlay }) {
   const [open, setOpen] = useState(false);
-  const { episodes, loading, error, fetch } = useEpisodes(channelId);
+  const { episodes, loading, error, load } = useEpisodes(channelId);
 
   const toggle = () => {
-    if (!open) fetch();
+    if (!open) load();
     setOpen((v) => !v);
   };
 
