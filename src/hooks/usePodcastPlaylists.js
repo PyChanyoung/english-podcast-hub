@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 
-const API_KEY = 'AIzaSyBuC0b-Fl3jmq4yRCnUNxrUUC4-iKlsBNw';
 const cache = {};
 
 export function usePodcastPlaylists(channelId) {
@@ -19,7 +18,7 @@ export function usePodcastPlaylists(channelId) {
     setLoading(true);
     setError(null);
     try {
-      const url = `https://www.googleapis.com/youtube/v3/playlists?part=snippet,status&channelId=${channelId}&maxResults=50&key=${API_KEY}`;
+      const url = `/api/youtube?endpoint=playlists&part=snippet,status&channelId=${channelId}&maxResults=50`;
       const res = await window.fetch(url);
       if (!res.ok) throw new Error('API 오류');
       const data = await res.json();

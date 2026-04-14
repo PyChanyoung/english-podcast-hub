@@ -1,6 +1,5 @@
 import { useState, useCallback } from 'react';
 
-const API_KEY = 'AIzaSyBuC0b-Fl3jmq4yRCnUNxrUUC4-iKlsBNw';
 const cache = {};
 
 // channelId → uploads 플레이리스트 ID (팟캐스트 탭 없는 채널용)
@@ -24,7 +23,7 @@ export function useEpisodes(playlistId) {
     setLoading(true);
     setError(null);
     try {
-      const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=8&key=${API_KEY}`;
+      const url = `/api/youtube?endpoint=playlistItems&part=snippet&playlistId=${playlistId}&maxResults=8`;
       const res = await window.fetch(url);
       if (!res.ok) throw new Error('API 오류');
       const data = await res.json();
